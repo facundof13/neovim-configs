@@ -1,5 +1,3 @@
-
-
 -- Bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
@@ -29,9 +27,17 @@ vim.opt.smartcase = true
 
 -- Setup lazy.nvim
 require("lazy").setup({
+-- PLUGINS GO HERE
   spec = {
-	  { import = "plugins" },
-      { "https://github.com/justinmk/vim-sneak" }
+	{
+		"kylechui/nvim-surround",
+		version = "^3.0.0",
+		event = "VeryLazy",
+		config = function()
+			require("nvim-surround").setup({ })
+		end
+	},
+	{ "https://github.com/justinmk/vim-sneak" },
   },
   -- Configure any other settings here. See the documentation for more details.
   -- colorscheme that will be used when installing plugins.
@@ -39,16 +45,6 @@ require("lazy").setup({
   -- automatically check for plugin updates
   checker = { enabled = true },
 })
-
--- Remap yanking to use the system clipboard
-vim.keymap.set('n', 'y', '"+y')
-vim.keymap.set('n', 'yy', '"+yy')
-vim.keymap.set('n', 'p', '"+p')
-vim.keymap.set('v', 'y', '"+y')
-
-
-vim.keymap.set('n','<C-d>', '<C-d>zz', { noremap = true, silent = true})
-vim.keymap.set('n','<C-u>', '<C-u>zz', { noremap = true, silent = true})
 
 
 -- highlight on yank
