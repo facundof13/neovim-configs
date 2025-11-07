@@ -40,7 +40,15 @@ require("lazy").setup({
 				require("nvim-surround").setup({})
 			end,
 		},
-		{ "https://github.com/justinmk/vim-sneak" },
+		{
+			'smoka7/hop.nvim',
+			version = "*",
+			opts = {
+				keys = 'etovxqpdygfblzhckisuran'
+			},
+			config = function ()
+			end
+		},
 		{ "https://github.com/bkad/CamelCaseMotion" },
 		{
 			"https://github.com/monaqa/dial.nvim",
@@ -106,3 +114,5 @@ vim.keymap.set("x", "g<C-x>", function()
 	require("dial.map").manipulate("decrement", "gvisual")
 end)
 
+require'hop'.setup { keys = 'etovxqpdygfblzhckisuran', term_seq_bias = 0.5 }
+vim.api.nvim_set_keymap('', 'f', "<cmd>lua require'hop'.hint_char1()<cr>", {})
