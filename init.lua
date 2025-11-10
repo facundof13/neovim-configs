@@ -44,6 +44,13 @@ require("lazy").setup({
 		{ "https://github.com/bkad/CamelCaseMotion" },
 		{ "https://github.com/tpope/vim-repeat" },
 		{
+			"numToStr/Comment.nvim",
+			opts = {},
+			config = function()
+				require("Comment").setup()
+			end,
+		},
+		{
 			"https://github.com/monaqa/dial.nvim",
 			config = function()
 				local augend = require("dial.augend")
