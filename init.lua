@@ -40,16 +40,9 @@ require("lazy").setup({
 				require("nvim-surround").setup({})
 			end,
 		},
-		{
-			'smoka7/hop.nvim',
-			version = "*",
-			opts = {
-				keys = 'etovxqpdygfblzhckisuran'
-			},
-			config = function ()
-			end
-		},
+		{ "https://github.com/ggandor/leap.nvim" },
 		{ "https://github.com/bkad/CamelCaseMotion" },
+		{ "https://github.com/tpope/vim-repeat" },
 		{
 			"https://github.com/monaqa/dial.nvim",
 			config = function()
@@ -89,6 +82,7 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 })
 
 vim.opt.clipboard:append("unnamedplus")
+-- Dial.nvim (modify numbers, dates, booleans with cyclic patterns)
 vim.keymap.set("n", "<C-a>", function()
 	require("dial.map").manipulate("increment", "normal")
 end)
@@ -114,5 +108,6 @@ vim.keymap.set("x", "g<C-x>", function()
 	require("dial.map").manipulate("decrement", "gvisual")
 end)
 
-require'hop'.setup { keys = 'etovxqpdygfblzhckisuran', term_seq_bias = 0.5 }
-vim.api.nvim_set_keymap('', 'f', "<cmd>lua require'hop'.hint_char1()<cr>", {})
+-- Leap.nvim (jump to any character)
+vim.keymap.set({ "n", "x", "o" }, "s", "<Plug>(leap-anywhere)")
+vim.keymap.set("n", "S", "<Plug>(leap-from-window)")
